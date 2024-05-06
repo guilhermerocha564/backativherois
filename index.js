@@ -31,3 +31,9 @@ app.post("/herois", async (req, res) => {
   ]);
   res.send("Herói cadastrado com sucesso");
 });
+
+app.get("/herois/:id", async (req, res) => {
+  const { id } = req.params;
+  const { rows } = await pool.query("SELECT * FROM herois WHERE id = $1", [id]);
+  res.json(rows);
+});
