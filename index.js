@@ -48,3 +48,9 @@ app.put("/herois/:id", async (req, res) => {
   ]);
   res.send("Herói atualizado com sucesso");
 });
+
+app.delete("/herois/:id", async (req, res) => {
+  const { id } = req.params;
+  await pool.query("DELETE FROM herois WHERE id = $1", [id]);
+  res.send("Herói deletado com sucesso");
+});
