@@ -37,3 +37,14 @@ app.get("/herois/:id", async (req, res) => {
   const { rows } = await pool.query("SELECT * FROM herois WHERE id = $1", [id]);
   res.json(rows);
 });
+
+app.put("/herois/:id", async (req, res) => {
+  const { id } = req.params;
+  const { nome, poder } = req.body;
+  await pool.query("UPDATE herois SET nome = $1, poder = $2 WHERE id = $3", [
+    nome,
+    poder,
+    id,
+  ]);
+  res.send("Herói atualizado com sucesso");
+});
