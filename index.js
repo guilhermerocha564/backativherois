@@ -20,10 +20,3 @@ app.get("/herois", async (req, res) => {
   const { rows } = await pool.query("SELECT * FROM herois");
   res.json(rows);
 });
-
-app.post("/herois", async (req, res) => {
-  const { nome, poder, nivel, hp } = req.body;
-  await pool.query("INSERT INTO herois (nome, poder) VALUES ($1, $2)",
-    [nome, poder, nivel, hp]);
-  res.send("Herói cadastrado com sucesso");
-}
